@@ -222,7 +222,8 @@
   .m-ag { background: radial-gradient(120% 100% at 30% 0%, #3a4bd1, #1b2575 55%, #10164a); }
   .m-pa { background: radial-gradient(120% 100% at 20% 0%, #2f8fe0, #1b5fb8 45%, #e8741e 130%); }
   .m-tatd { background: radial-gradient(120% 100% at 30% 0%, #ff9a4d, #f26a1b 50%, #b8410a); }
-  .m-pm { background: radial-gradient(120% 100% at 70% 0%, #19c27a, #0a8f4d 55%, #04532f); align-items: flex-end; }
+  .m-pm { background: radial-gradient(120% 100% at 70% 0%, #19c27a, #0a8f4d 55%, #04532f); }
+  .m-wc { background: radial-gradient(120% 100% at 30% 0%, #4f6bff, #1f3bd6 50%, #0c1c80); }
   .pm-img { width: 260px; margin-top: 48px; margin-bottom: -60px; filter: drop-shadow(0 30px 40px rgba(0,0,0,.4)); transition: .35s; }
   .feature:hover .pm-img { transform: translateY(-12px); }
   .shots { display: flex; align-items: center; justify-content: center; padding: 40px 20px; }
@@ -268,7 +269,7 @@
   @media (max-width: 760px) { .duo { grid-template-columns: 1fr; } }
 
   /* Also shipped */
-  .also-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .also-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
   .also-card { display: flex; flex-direction: column; gap: 10px; }
   .also-card .lg { width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center; background: #fff; border: 1px solid #e6e6ee; overflow: hidden; }
   .also-card .lg img { width: 40px; height: 40px; object-fit: contain; }
@@ -601,7 +602,7 @@
 
     <article class="card feature rev reveal">
       <div class="f-body">
-        <div class="f-head"><span class="ic-tile" style="width:56px;height:56px;border-radius:14px;background:#e8f7ef;color:#0a8f4d;border:0"><svg class="ic ic-lg"><use href="#i-zap"/></svg></span><div><div class="tag">Utility payments · Flutter</div><h3>Paymeter NG</h3></div></div>
+        <div class="f-head"><img src="assets/paymeter-icon.png" alt="Paymeter app icon"><div><div class="tag">Utility payments · Flutter</div><h3>Paymeter NG</h3></div></div>
         <p>A utility payments app for buying prepaid electricity tokens and paying bills, with card or bank-transfer checkout and real-time confirmation.</p>
         <ul class="ticks">
           <li><svg class="ic"><use href="#i-check"/></svg><span>Manage <b>several meters</b> and buy units in a few taps.</span></li>
@@ -614,7 +615,38 @@
           <a class="store" href="https://apps.apple.com/ng/app/paymeter-ng/id6737909904" target="_blank" rel="noopener"><svg class="ic"><use href="#i-apple"/></svg><span><small>Download on the</small><b>App Store</b></span></a>
         </div>
       </div>
-      <div class="f-media m-pm"><img class="pm-img" src="assets/paymeter-mock.png" alt="Paymeter home screen with transaction overview" loading="lazy"></div>
+      <div class="f-media m-pm">
+        <div class="shots">
+          <img src="assets/pm-1.jpg" alt="Paymeter welcome screen" loading="lazy">
+          <img src="assets/pm-6.jpg" alt="Paymeter transaction overview with units and spend" loading="lazy">
+          <img src="assets/pm-7.jpg" alt="Paymeter electricity token receipt" loading="lazy">
+        </div>
+      </div>
+    </article>
+
+    <article class="card feature reveal">
+      <div class="f-body">
+        <div class="f-head"><img src="assets/whitecrust-icon.png" alt="Whitecrust app icon"><div><div class="tag">Digital banking · Flutter</div><h3>Whitecrust</h3></div></div>
+        <p>Mobile banking for Whitecrust Finance: customers manage their money, send transfers and grow their savings and investments from one app.</p>
+        <div class="mini-stats"><div><b>4.7★</b><small>Google Play rating</small></div><div><b>1K+</b><small>Downloads</small></div><div><b>iOS + Android</b><small>One codebase</small></div></div>
+        <ul class="ticks">
+          <li><svg class="ic"><use href="#i-check"/></svg><span>Account dashboard with <b>balance, quick actions</b> and transaction history.</span></li>
+          <li><svg class="ic"><use href="#i-check"/></svg><span><b>Transfers</b> to Whitecrust users and other banks, with instant receipts.</span></li>
+          <li><svg class="ic"><use href="#i-check"/></svg><span>Investment and <b>quick-loan</b> offers inside the app.</span></li>
+        </ul>
+        <div class="chips"><span class="chip">Flutter</span><span class="chip">REST</span><span class="chip">Secure storage</span><span class="chip">Biometrics</span></div>
+        <div class="f-actions">
+          <a class="store" href="https://play.google.com/store/apps/details?id=com.tm30.whitecrustng" target="_blank" rel="noopener"><svg class="ic"><use href="#i-play"/></svg><span><small>Get it on</small><b>Google Play</b></span></a>
+          <a class="store" href="https://apps.apple.com/ng/app/whitecrust/id6754378446" target="_blank" rel="noopener"><svg class="ic"><use href="#i-apple"/></svg><span><small>Download on the</small><b>App Store</b></span></a>
+        </div>
+      </div>
+      <div class="f-media m-wc">
+        <div class="shots">
+          <img src="assets/wc-1.jpg" alt="Whitecrust splash screen" loading="lazy">
+          <img src="assets/wc-3.jpg" alt="Whitecrust account dashboard" loading="lazy">
+          <img src="assets/wc-4.jpg" alt="Whitecrust successful transfer receipt" loading="lazy">
+        </div>
+      </div>
     </article>
 
     <!-- Also shipped -->
@@ -622,7 +654,7 @@
     <div class="also-grid">
       <div class="card also-card reveal"><span class="lg"><img src="assets/ellington-logo.png" alt=""></span><h4>Ellington MFB Business</h4><p>MSME banking: KYC, loans, invoicing, bulk payments and agent tools.</p><span class="num">2,500+ businesses · ₦500M+ processed</span></div>
       <div class="card also-card reveal"><span class="lg txt" style="background:linear-gradient(135deg,#10b981,#047857)">A</span><h4>Adashi</h4><p>Digital thrift (ajo) savings app.</p><span class="num">10,000+ users</span></div>
-      <div class="card also-card reveal"><span class="lg txt" style="background:linear-gradient(135deg,#6366f1,#312e81)">W</span><h4>Whitecrust Microfinance</h4><p>Microfinance banking app with transfers and account management.</p><span class="mini-links"><a href="https://play.google.com/store/apps/details?id=com.tm30.whitecrustng" target="_blank" rel="noopener"><svg class="ic ic-sm"><use href="#i-play"/></svg>Google Play</a><a href="https://apps.apple.com/ng/app/whitecrust/id6754378446" target="_blank" rel="noopener"><svg class="ic ic-sm"><use href="#i-apple"/></svg>App Store</a></span></div>
+      
       <div class="card also-card reveal"><span class="lg txt" style="background:linear-gradient(135deg,#f59e0b,#b45309)">D</span><h4>Digital Financial Freedom</h4><p>Personal finance product shipped to the app stores.</p><span class="num">Fintech</span></div>
     </div>
   </div>
