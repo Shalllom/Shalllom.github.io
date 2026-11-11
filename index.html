@@ -1,0 +1,748 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Peace Olaleye — Mobile Software Engineer (Android · Flutter)</title>
+<meta name="description" content="Peace Enoch Olaleye is a mobile software engineer building native Android (Kotlin/Java) POS apps for agency banking and Flutter apps for fintech, payments and gov-tech. Open to relocation (EU / UK / US) and remote roles.">
+<meta property="og:title" content="Peace Olaleye — Mobile Software Engineer">
+<meta property="og:description" content="Native Android & Flutter engineer shipping agency-banking POS, fintech and gov-tech apps. Open to relocation and remote roles.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="assets/peace-hero.jpg">
+<meta name="theme-color" content="#0b0d12">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%235b5bf7'/%3E%3Ctext x='32' y='42' font-family='Arial' font-weight='700' font-size='28' fill='white' text-anchor='middle'%3EPO%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Peace Enoch Olaleye","jobTitle":"Mobile Software Engineer","address":{"@type":"PostalAddress","addressLocality":"Lagos","addressCountry":"NG"},"alumniOf":"Ladoke Akintola University of Technology","sameAs":["https://github.com/Shalllom","https://www.linkedin.com/in/peace-olaleye-465975139"]}
+</script>
+<style>
+  :root {
+    --bg: #f6f6f9; --surface: #ffffff; --surface-2: #f0f0f5; --border: #e3e3ea;
+    --text: #0f1117; --muted: #5b6070; --accent: #5b5bf7; --accent-soft: #ececfe;
+    --accent-text: #4343d9; --ok: #16a34a;
+    --shadow: 0 1px 2px rgba(15,17,23,.04), 0 10px 30px rgba(15,17,23,.07);
+    --shadow-lg: 0 30px 60px -20px rgba(15,17,23,.25);
+    --radius: 20px; --max: 1160px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0a0c11; --surface: #11141b; --surface-2: #171b24; --border: #222735;
+      --text: #eef0f5; --muted: #9aa0b0; --accent: #7c7cff; --accent-soft: #1c1e38;
+      --accent-text: #a5a5ff; --ok: #4ade80; --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
+      --shadow-lg: 0 30px 60px -20px rgba(0,0,0,.7);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0a0c11; --surface: #11141b; --surface-2: #171b24; --border: #222735;
+    --text: #eef0f5; --muted: #9aa0b0; --accent: #7c7cff; --accent-soft: #1c1e38;
+    --accent-text: #a5a5ff; --ok: #4ade80; --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
+    --shadow-lg: 0 30px 60px -20px rgba(0,0,0,.7);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+  body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+  @media (max-width: 600px) { .wrap { padding: 0 16px; } }
+
+  /* Icons */
+  .ic { width: 20px; height: 20px; flex: none; stroke: currentColor; fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+  .ic-sm { width: 16px; height: 16px; }
+  .ic-lg { width: 24px; height: 24px; }
+  .ic-tile { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; flex: none; background: var(--accent-soft); color: var(--accent-text); border: 1px solid color-mix(in srgb, var(--accent) 18%, transparent); }
+
+  /* Nav */
+  header.nav { position: sticky; top: 0; z-index: 50; background: color-mix(in srgb, var(--bg) 80%, transparent); backdrop-filter: saturate(160%) blur(14px); -webkit-backdrop-filter: saturate(160%) blur(14px); border-bottom: 1px solid var(--border); }
+  .nav-in { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 16px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: -.01em; }
+  .brand img { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 2px var(--surface), 0 0 0 3.5px var(--accent); }
+  .links { display: flex; gap: 4px; }
+  .links a { padding: 8px 12px; border-radius: 10px; font-size: 14px; color: var(--muted); font-weight: 500; transition: .15s; }
+  .links a:hover { color: var(--text); background: var(--surface-2); }
+  .nav-actions { display: flex; align-items: center; gap: 8px; }
+  .icon-btn { width: 38px; height: 38px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface); color: var(--text); display: grid; place-items: center; cursor: pointer; transition: .15s; }
+  .icon-btn:hover { border-color: var(--accent); color: var(--accent-text); }
+  .menu-btn { display: none; }
+  @media (max-width: 860px) {
+    .links { display: none; position: absolute; top: 64px; left: 0; right: 0; flex-direction: column; padding: 12px 16px 16px; background: var(--bg); border-bottom: 1px solid var(--border); }
+    .links.open { display: flex; }
+    .links a { padding: 12px; font-size: 15px; }
+    .menu-btn { display: grid; }
+    .nav-actions .btn { display: none; }
+  }
+
+  /* Buttons */
+  .btn { display: inline-flex; align-items: center; gap: 8px; height: 46px; padding: 0 20px; border-radius: 12px; font-weight: 600; font-size: 15px; border: 1px solid transparent; transition: .15s; cursor: pointer; white-space: nowrap; }
+  .btn-sm { height: 38px; padding: 0 14px; font-size: 14px; }
+  .btn-primary { background: var(--text); color: var(--bg); }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: var(--shadow); }
+  .btn-ghost { background: var(--surface); border-color: var(--border); color: var(--text); }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent-text); }
+  .store { display: inline-flex; align-items: center; gap: 10px; height: 44px; padding: 0 16px; border-radius: 12px; background: #0b0d12; color: #fff; font-size: 13px; line-height: 1.15; border: 1px solid #2a2f3c; transition: .15s; }
+  .store:hover { transform: translateY(-1px); }
+  .store small { display: block; font-size: 10px; opacity: .75; text-transform: uppercase; letter-spacing: .04em; }
+  .store b { font-size: 15px; font-weight: 600; }
+  .store svg { width: 22px; height: 22px; }
+
+  /* Hero */
+  .hero { padding: 72px 0 40px; position: relative; }
+  .hero::before { content: ""; position: absolute; inset: -140px 0 auto 0; height: 640px; z-index: -1; pointer-events: none;
+    background: radial-gradient(640px 320px at 15% 30%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 70%),
+                radial-gradient(520px 300px at 85% 20%, color-mix(in srgb, #22d3ee 14%, transparent), transparent 70%); }
+  .status { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px 6px 10px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface); font-size: 13px; font-weight: 500; color: var(--muted); }
+  .dot { width: 8px; height: 8px; flex: none; border-radius: 50%; background: var(--ok); box-shadow: 0 0 0 4px color-mix(in srgb, var(--ok) 20%, transparent); animation: pulse 2.4s infinite; }
+  @keyframes pulse { 50% { box-shadow: 0 0 0 7px color-mix(in srgb, var(--ok) 0%, transparent); } }
+  .hero-grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: 56px; align-items: center; }
+  .hi { font-size: 18px; font-weight: 600; color: var(--muted); margin: 22px 0 10px; }
+  h1 { font-size: clamp(40px, 6vw, 66px); line-height: 1.03; letter-spacing: -.04em; font-weight: 800; }
+  .grad { background: linear-gradient(90deg, var(--accent), #22b8e6); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .lead { font-size: clamp(17px, 2vw, 19px); color: var(--muted); margin: 22px 0 32px; max-width: 580px; }
+  .lead strong { color: var(--text); font-weight: 600; }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; }
+  .meta { display: flex; flex-wrap: wrap; gap: 10px 20px; margin-top: 28px; color: var(--muted); font-size: 14px; }
+  .meta span { display: inline-flex; align-items: center; gap: 6px; }
+
+  .portrait { position: relative; aspect-ratio: 4/5; }
+  .portrait::before { content: ""; position: absolute; inset: 18px -18px -18px 18px; border-radius: 32px; background: linear-gradient(135deg, var(--accent), #22b8e6); opacity: .9; }
+  .portrait .frame { position: absolute; inset: 0; border-radius: 32px; overflow: hidden; box-shadow: var(--shadow-lg); background: #2a1d12; }
+  .portrait .frame img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
+  .portrait .frame::after { content: ""; position: absolute; inset: auto 0 0 0; height: 35%; background: linear-gradient(transparent, rgba(0,0,0,.45)); }
+  .chip-float { position: absolute; display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 14px; background: color-mix(in srgb, var(--surface) 90%, transparent); backdrop-filter: blur(12px); border: 1px solid var(--border); box-shadow: var(--shadow); font-size: 13px; font-weight: 600; white-space: nowrap; }
+  .chip-float small { display: block; font-weight: 500; color: var(--muted); font-size: 12px; }
+  .chip-float .ic-tile { width: 36px; height: 36px; border-radius: 10px; }
+  .cf-1 { left: -36px; top: 10%; animation: float 6s ease-in-out infinite; }
+  .cf-2 { right: -30px; top: 52%; animation: float 7s ease-in-out infinite reverse; }
+  .cf-3 { left: -20px; bottom: 8%; animation: float 8s ease-in-out infinite; }
+  @keyframes float { 50% { transform: translateY(-8px); } }
+  @media (max-width: 600px) { .cf-2 { display: none; } .cf-1 { top: 6%; } }
+  @media (max-width: 900px) {
+    .hero { padding: 40px 0 24px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+    .portrait { max-width: 400px; width: calc(100% - 24px); margin: 0 auto; }
+    .cf-1 { left: -10px; } .cf-2 { right: -14px; } .cf-3 { left: -10px; } .portrait::before { inset: 12px -12px -12px 12px; }
+  }
+
+  /* Logos strip */
+  .logos { margin-top: 64px; padding: 22px 24px; border-radius: var(--radius); border: 1px solid var(--border); background: var(--surface); display: flex; align-items: center; gap: 20px 28px; flex-wrap: wrap; }
+  .logos .lbl { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+  .logo-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; flex: 1; }
+  .logo-pill { height: 48px; padding: 0 14px; border-radius: 12px; background: #fff; border: 1px solid #e6e6ee; display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 14px; color: #1b2440; }
+  .logo-pill img { height: 26px; width: auto; }
+  .logo-pill img.sq { height: 30px; border-radius: 8px; }
+  @media (max-width: 700px) { .logos { flex-direction: column; align-items: flex-start; padding: 18px 16px; } .logo-row { gap: 8px; } .logo-pill { height: 40px; padding: 0 10px; font-size: 13px; } .logo-pill img { height: 20px; } .logo-pill img.sq { height: 24px; } }
+
+  /* Stats */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 16px; }
+  .stat { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; }
+  .stat b { font-size: 32px; letter-spacing: -.03em; display: block; line-height: 1.1; font-weight: 800; }
+  .stat span { color: var(--muted); font-size: 14px; }
+  @media (max-width: 720px) { .stats { grid-template-columns: repeat(2, 1fr); } .stat b { font-size: 26px; } }
+
+  /* Sections */
+  section.block { padding: 80px 0; }
+  .eyebrow { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 13px; color: var(--accent-text); letter-spacing: .02em; margin-bottom: 10px; }
+  h2 { font-size: clamp(30px, 4vw, 44px); letter-spacing: -.035em; line-height: 1.12; font-weight: 800; }
+  .sec-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 40px; flex-wrap: wrap; }
+  .sec-head p { color: var(--muted); max-width: 480px; }
+  .sub-head { display: flex; align-items: center; gap: 12px; margin: 56px 0 20px; }
+  .sub-head h3 { font-size: 22px; letter-spacing: -.02em; }
+  .sub-head .line { flex: 1; height: 1px; background: var(--border); }
+  @media (max-width: 600px) { section.block { padding: 56px 0; } }
+
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; }
+  .card h3 { font-size: 17px; letter-spacing: -.01em; margin: 14px 0 6px; }
+  .card p { color: var(--muted); font-size: 15px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { font-size: 13px; padding: 5px 10px; border-radius: 8px; background: var(--surface-2); border: 1px solid var(--border); color: var(--text); font-weight: 500; }
+  .tag { font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .07em; }
+  .ticks { list-style: none; display: grid; gap: 8px; }
+  .ticks li { display: flex; gap: 10px; color: var(--muted); font-size: 15px; }
+  .ticks li b { color: var(--text); font-weight: 600; }
+  .ticks .ic { width: 18px; height: 18px; color: var(--ok); margin-top: 3px; }
+
+  /* About */
+  .bento { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; }
+  .span-4 { grid-column: span 4; } .span-2 { grid-column: span 2; }
+  .about-photo { grid-row: span 2; padding: 0; overflow: hidden; position: relative; min-height: 420px; }
+  .about-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; }
+  .about-photo .cap { position: absolute; left: 14px; right: 14px; bottom: 14px; padding: 12px 14px; border-radius: 14px; background: rgba(10,12,17,.6); backdrop-filter: blur(10px); color: #fff; font-size: 13px; }
+  .about-photo .cap b { display: block; font-size: 15px; }
+  .span-3 { grid-column: span 3; }
+  .about-text p + p { margin-top: 12px; }
+  .about-text p { font-size: 16px; color: var(--muted); }
+  .about-text strong { color: var(--text); font-weight: 600; }
+  @media (max-width: 860px) { .span-4, .span-2, .span-3 { grid-column: span 6; } .about-photo { grid-row: auto; min-height: 460px; } }
+
+  /* POS cards */
+  .pos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .pos-card { padding: 0; overflow: hidden; display: flex; flex-direction: column; transition: .25s; }
+  .pos-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+  .pos-stage { height: 290px; position: relative; display: grid; place-items: center; overflow: hidden; }
+  .pos-stage::after { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 75% 15%, rgba(255,255,255,.28), transparent 45%); pointer-events: none; }
+  .st-stanbic { background: linear-gradient(150deg, #0a3fa8, #021b55); }
+  .st-swift { background: linear-gradient(150deg, #1d2a6b, #c8102e); }
+  .st-hope { background: linear-gradient(150deg, #f7c843, #e09b00); }
+  .badge { position: absolute; top: 14px; left: 14px; z-index: 2; font-size: 11px; font-weight: 700; padding: 5px 10px; border-radius: 999px; background: rgba(255,255,255,.92); color: #0f1117; display: inline-flex; gap: 6px; align-items: center; letter-spacing: .02em; }
+  .badge i { width: 7px; height: 7px; border-radius: 50%; background: #16a34a; }
+  .badge.wip i { background: #f59e0b; }
+
+  .pos { position: relative; z-index: 1; width: 148px; height: 236px; border-radius: 24px 24px 30px 30px; background: linear-gradient(180deg, #2a2f3b, #14171e); padding: 22px 12px 12px; box-shadow: 0 30px 40px -12px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.12); transform: rotate(-6deg) translateY(16px); transition: .35s; }
+  .pos-card:hover .pos { transform: rotate(0) translateY(6px); }
+  .pos .paper { position: absolute; top: -34px; left: 26px; right: 26px; height: 46px; background: repeating-linear-gradient(#fff 0 6px, #f1f1f1 6px 7px); border-radius: 3px 3px 0 0; box-shadow: 0 -2px 6px rgba(0,0,0,.15); z-index: -1; }
+  .pos .paper::before { content: ""; position: absolute; left: 8px; right: 20px; top: 8px; height: 2px; background: #c9c9c9; box-shadow: 0 6px 0 #d8d8d8, 0 12px 0 #d8d8d8; }
+  .pos .screen { height: 104px; border-radius: 10px; background: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; padding: 8px; box-shadow: inset 0 0 0 2px rgba(0,0,0,.06); }
+  .pos .screen img { max-height: 34px; max-width: 100px; width: auto; }
+  .pos .screen .amt { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 11px; color: #0f1117; font-weight: 500; }
+  .pos .screen .ok { font-size: 9px; font-weight: 700; color: #16a34a; display: flex; align-items: center; gap: 3px; }
+  .pos .keys { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; margin-top: 10px; }
+  .pos .keys span { height: 17px; border-radius: 5px; background: #3a404e; box-shadow: inset 0 -2px 0 rgba(0,0,0,.35); }
+  .pos .keys span.r { background: #c0392b; } .pos .keys span.y { background: #d4a10b; } .pos .keys span.g { background: #1e9e55; }
+  .pos-body { padding: 22px 24px 26px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+  .pos-body h3 { font-size: 20px; margin: 0; letter-spacing: -.015em; }
+  .pos-body .ticks li { font-size: 14px; }
+  .pos-body .chips { margin-top: auto; padding-top: 6px; }
+  @media (max-width: 980px) { .pos-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 680px) { .pos-grid { grid-template-columns: 1fr; } }
+
+  /* Feature (big) project */
+  .feature { display: grid; grid-template-columns: 1fr 1.05fr; gap: 0; padding: 0; overflow: hidden; margin-bottom: 24px; }
+  .feature.rev { grid-template-columns: 1.05fr 1fr; }
+  .feature.rev .f-media { order: -1; }
+  .f-body { padding: 40px; display: flex; flex-direction: column; gap: 16px; }
+  .f-head { display: flex; align-items: center; gap: 14px; }
+  .f-head img { width: 56px; height: 56px; border-radius: 14px; box-shadow: var(--shadow); background: #fff; object-fit: contain; }
+  .f-head h3 { font-size: 26px; letter-spacing: -.025em; margin: 0; }
+  .f-body > p { font-size: 16px; color: var(--muted); }
+  .f-actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 4px; }
+  .f-media { position: relative; min-height: 460px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+  .m-ag { background: radial-gradient(120% 100% at 30% 0%, #3a4bd1, #1b2575 55%, #10164a); }
+  .m-pa { background: radial-gradient(120% 100% at 20% 0%, #2f8fe0, #1b5fb8 45%, #e8741e 130%); }
+  .m-tatd { background: radial-gradient(120% 100% at 30% 0%, #ff9a4d, #f26a1b 50%, #b8410a); }
+  .m-pm { background: radial-gradient(120% 100% at 70% 0%, #19c27a, #0a8f4d 55%, #04532f); align-items: flex-end; }
+  .pm-img { width: 260px; margin-top: 48px; margin-bottom: -60px; filter: drop-shadow(0 30px 40px rgba(0,0,0,.4)); transition: .35s; }
+  .feature:hover .pm-img { transform: translateY(-12px); }
+  .shots { display: flex; align-items: center; justify-content: center; padding: 40px 20px; }
+  .shots img { width: 170px; border-radius: 26px; box-shadow: 0 30px 50px -15px rgba(0,0,0,.55); border: 1px solid rgba(255,255,255,.15); transition: .35s; }
+  .shots img:nth-child(1) { transform: rotate(-8deg) translate(36px, 18px); z-index: 1; }
+  .shots img:nth-child(2) { transform: translateY(-10px) scale(1.06); z-index: 3; position: relative; }
+  .shots img:nth-child(3) { transform: rotate(8deg) translate(-36px, 18px); z-index: 2; }
+  .feature:hover .shots img:nth-child(1) { transform: rotate(-11deg) translate(20px, 22px); }
+  .feature:hover .shots img:nth-child(3) { transform: rotate(11deg) translate(-20px, 22px); }
+  .pa-img { width: 86%; max-width: 440px; filter: drop-shadow(0 30px 40px rgba(0,0,0,.25)); }
+  .mini-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .mini-stats div { background: var(--surface-2); border-radius: 12px; padding: 12px 14px; }
+  .mini-stats b { display: block; font-size: 16px; letter-spacing: -.01em; }
+  .mini-stats small { color: var(--muted); font-size: 12px; line-height: 1.3; display: block; }
+  @media (max-width: 900px) {
+    .feature, .feature.rev { grid-template-columns: 1fr; }
+    .feature.rev .f-media { order: 0; }
+    .f-media { min-height: 360px; }
+    .f-body { padding: 28px 24px; }
+    .shots img { width: 130px; border-radius: 20px; }
+  }
+  @media (max-width: 420px) { .shots img { width: 108px; } .mini-stats { grid-template-columns: 1fr 1fr; } }
+
+  /* Two-up projects */
+  .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .duo .card { padding: 0; overflow: hidden; display: flex; flex-direction: column; }
+  .duo-media { height: 260px; position: relative; overflow: hidden; display: flex; justify-content: center; }
+  .dm-pm { background: linear-gradient(160deg, #0aa35a, #04532f); }
+  .dm-pm img { width: 190px; margin-top: 34px; filter: drop-shadow(0 20px 30px rgba(0,0,0,.4)); transition: .35s; }
+  .duo .card:hover .dm-pm img { transform: translateY(-10px); }
+  .dm-tatd { background: linear-gradient(160deg, #ff7a18, #af002d); align-items: center; }
+  .route { position: absolute; inset: 0; }
+  .route svg { width: 100%; height: 100%; }
+  .track { position: relative; z-index: 1; background: #fff; color: #0f1117; border-radius: 16px; padding: 16px 18px; width: 260px; box-shadow: 0 20px 40px -10px rgba(0,0,0,.45); font-size: 13px; }
+  .track .row { display: flex; justify-content: space-between; align-items: center; }
+  .track .id { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 11px; color: #5b6070; }
+  .track .pill { font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 999px; background: #fff1e6; color: #c2410c; }
+  .steps { display: flex; gap: 6px; margin: 14px 0 8px; }
+  .steps i { flex: 1; height: 5px; border-radius: 5px; background: #ececf2; }
+  .steps i.on { background: linear-gradient(90deg, #ff7a18, #e0245e); }
+  .duo-body { padding: 24px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+  .duo-body h3 { font-size: 20px; margin: 0; }
+  @media (max-width: 760px) { .duo { grid-template-columns: 1fr; } }
+
+  /* Also shipped */
+  .also-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .also-card { display: flex; flex-direction: column; gap: 10px; }
+  .also-card .lg { width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center; background: #fff; border: 1px solid #e6e6ee; overflow: hidden; }
+  .also-card .lg img { width: 40px; height: 40px; object-fit: contain; }
+  .also-card .lg.txt { color: #fff; font-weight: 800; font-size: 18px; border: 0; }
+  .also-card h4 { font-size: 16px; letter-spacing: -.01em; }
+  .also-card p { font-size: 14px; color: var(--muted); }
+  .mini-links { display: flex; gap: 8px; flex-wrap: wrap; margin-top: auto; }
+  .mini-links a { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; padding: 6px 10px; border-radius: 8px; background: var(--surface-2); border: 1px solid var(--border); }
+  .mini-links a:hover { border-color: var(--accent); color: var(--accent-text); }
+  .also-card .num { font-weight: 700; color: var(--text); font-size: 14px; }
+  @media (max-width: 900px) { .also-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 460px) { .also-grid { grid-template-columns: 1fr; } }
+
+  /* Skills */
+  .skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .skill-card { display: flex; flex-direction: column; gap: 14px; }
+  .skill-card h3 { margin: 0; }
+  @media (max-width: 900px) { .skills { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 600px) { .skills { grid-template-columns: 1fr; } }
+
+  /* Experience */
+  .timeline { display: grid; gap: 14px; }
+  .job { display: grid; grid-template-columns: 180px 1fr; gap: 24px; }
+  .job .when { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 13px; color: var(--muted); padding-top: 3px; }
+  .job-head { display: flex; align-items: baseline; gap: 4px 10px; flex-wrap: wrap; }
+  .job h3 { margin: 0; font-size: 18px; }
+  .job .co { color: var(--accent-text); font-weight: 600; }
+  .job .sub { color: var(--muted); font-size: 14px; margin-top: 2px; }
+  .job .ticks { margin-top: 12px; }
+  .job .chips { margin-top: 14px; }
+  @media (max-width: 720px) { .job { grid-template-columns: 1fr; gap: 6px; } }
+
+  /* Contact */
+  .contact { border-radius: 32px; padding: 56px; position: relative; overflow: hidden; display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; align-items: center; color: #fff;
+    background: radial-gradient(120% 120% at 0% 0%, #3b3bd6, #1a1f4d 50%, #0b0d18); border: 0; }
+  .contact h2 { color: #fff; }
+  .contact p { color: rgba(255,255,255,.75); margin: 14px 0 28px; max-width: 520px; }
+  .contact .eyebrow { color: #b8b8ff; }
+  .contact .btn-primary { background: #fff; color: #0f1117; }
+  .contact .btn-ghost { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.2); color: #fff; }
+  .contact .socials { display: flex; gap: 10px; margin-top: 24px; }
+  .contact .socials a { width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.18); color: #fff; transition: .15s; }
+  .contact .socials a:hover { background: rgba(255,255,255,.18); }
+  .contact-photo { position: relative; justify-self: end; width: 260px; height: 260px; border-radius: 50%; overflow: hidden; background: radial-gradient(circle at 50% 30%, #5b5bf7, #22b8e6); border: 6px solid rgba(255,255,255,.12); }
+  .contact-photo img { width: 100%; height: 100%; object-fit: cover; }
+  @media (max-width: 860px) { .contact { grid-template-columns: 1fr; padding: 40px 22px; } .contact-photo { justify-self: start; width: 140px; height: 140px; order: -1; } .contact .btn { white-space: normal; height: auto; min-height: 46px; padding: 10px 16px; } }
+
+  footer { padding: 32px 0 48px; color: var(--muted); font-size: 14px; }
+  .foot { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; border-top: 1px solid var(--border); padding-top: 24px; }
+
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } html { scroll-behavior: auto; } *, *::before { animation: none !important; } }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 8px; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  @media print { header.nav, .hero::before, .icon-btn, .chip-float { display: none !important; } .reveal { opacity: 1 !important; transform: none !important; } }
+</style>
+</head>
+<body>
+
+<!-- ============ ICON SET (24px grid, 1.75 stroke) ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 13 9 5 9-5"/><path d="m3 17.5 9 5 9-5" opacity=".5"/></symbol>
+    <symbol id="i-server" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01M11 7.5h6M11 16.5h6"/></symbol>
+    <symbol id="i-flame" viewBox="0 0 24 24"><path d="M12 21.5a7 7 0 0 0 7-7c0-4-3-6.5-4-10-2 1.5-3 3.5-3 5.5-1-1-1.5-2-1.5-3.5C8 8.5 5 11 5 14.5a7 7 0 0 0 7 7Z"/><path d="M12 21.5a3 3 0 0 1-3-3c0-2 3-4 3-4s3 2 3 4a3 3 0 0 1-3 3Z"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M10.5 18.5h3"/></symbol>
+    <symbol id="i-android" viewBox="0 0 24 24"><path d="M5 16.5V12a7 7 0 0 1 14 0v4.5H5Z"/><path d="M7 6.5 5.5 4.5M17 6.5l1.5-2"/><path d="M9 11h.01M15 11h.01"/><path d="M5 16.5h14v1a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-1Z"/></symbol>
+    <symbol id="i-pos" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><rect x="8" y="5.5" width="8" height="5" rx="1"/><path d="M8.5 14h.01M12 14h.01M15.5 14h.01M8.5 17.5h.01M12 17.5h.01M15.5 17.5h.01"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 21.5s8-3.5 8-10V5l-8-3-8 3v6.5c0 6.5 8 10 8 10Z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></symbol>
+    <symbol id="i-bug" viewBox="0 0 24 24"><rect x="7" y="7.5" width="10" height="13" rx="5"/><path d="M9 7.5V7a3 3 0 0 1 6 0v.5"/><path d="M3.5 13H7M17 13h3.5M4.5 8.5 7.5 10M19.5 8.5 16.5 10M4.5 18.5l3-1.5M19.5 18.5l-3-1.5M12 12v8"/></symbol>
+    <symbol id="i-zap" viewBox="0 0 24 24"><path d="M13 2.5 4 14h7l-1 7.5L19 10h-7l1-7.5Z"/></symbol>
+    <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></symbol>
+    <symbol id="i-plane" viewBox="0 0 24 24"><path d="M17.8 19.2 16 11l3.5-3.5c1.5-1.5 2-3.5 1.5-4-.5-.5-2.5 0-4 1.5L13 8.5 4.8 6.7a.5.5 0 0 0-.5.1l-1.1 1.1a.5.5 0 0 0 .1.8L9.5 12 6 15.5H3.5l-1 1 3.5 1.5 1.5 3.5 1-1V18l3.5-3.5 3.3 6.2a.5.5 0 0 0 .8.1l1.1-1.1a.5.5 0 0 0 .1-.5Z"/></symbol>
+    <symbol id="i-wifi-off" viewBox="0 0 24 24"><path d="M2 2l20 20"/><path d="M8.5 16.5a5 5 0 0 1 7 0"/><path d="M5 12.9a10 10 0 0 1 5.2-2.7M19 12.9a10 10 0 0 0-2-1.5"/><path d="M2 8.8a15 15 0 0 1 4.2-2.6M22 8.8A15 15 0 0 0 11 5"/><path d="M12 20h.01"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2.5" y="4.5" width="19" height="15" rx="3"/><path d="m3.5 7 8.5 6 8.5-6"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3.5v12"/><path d="m7 11 5 5 5-5"/><path d="M4 20.5h16"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21.5s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+    <symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="2.5" y="7" width="19" height="13" rx="2.5"/><path d="M8.5 7V5.5a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2V7"/><path d="M2.5 12.5h19"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.5 2.5 5.5-6"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10.5" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20.5 14.5A8.5 8.5 0 1 1 9.5 3.5a7 7 0 0 0 11 11Z"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-github" viewBox="0 0 24 24"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></symbol>
+    <symbol id="i-linkedin" viewBox="0 0 24 24"><rect x="2.5" y="2.5" width="19" height="19" rx="4"/><path d="M7.5 10.5v6M7.5 7.5v.01M11.5 16.5v-6M11.5 13a2.5 2.5 0 0 1 5 0v3.5"/></symbol>
+    <symbol id="i-apple" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M16.4 12.7c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9-.7 0-1.8-.9-3-.8-1.6 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7c1.3 0 2.1-1.1 2.8-2.3.9-1.3 1.3-2.6 1.3-2.6s-2.5-1-2.5-3.8ZM14.1 5.7c.6-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.1 1.8-1 2.9 1.1.1 2.1-.6 2.8-1.4Z"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M5 3.5v17l9-8.5-9-8.5Z"/><path d="m5 3.5 12 7-3 2.5M5 20.5l12-7-3-1.5"/></symbol>
+  </defs>
+</svg>
+
+<a class="sr" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a href="#top" class="brand" aria-label="Home"><img src="assets/peace-avatar.jpg" alt="">Peace Olaleye</a>
+    <nav class="links" id="links" aria-label="Primary">
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" id="theme" aria-label="Toggle dark mode"><svg class="ic"><use href="#i-moon"/></svg></button>
+      <a class="btn btn-primary btn-sm" href="Peace_Olaleye_CV.pdf" download><svg class="ic"><use href="#i-download"/></svg>CV</a>
+      <button class="icon-btn menu-btn" id="menu" aria-label="Open menu" aria-expanded="false" aria-controls="links"><svg class="ic"><use href="#i-menu"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="status"><span class="dot"></span>Open to new opportunities · Relocation or remote</span>
+        <p class="hi">Hi, I'm Peace Olaleye 👋</p>
+        <h1>I build mobile apps that <span class="grad">move money reliably.</span></h1>
+        <p class="lead">Mobile software engineer with <strong>3+ years</strong> shipping <strong>native Android (Kotlin / Java)</strong> and <strong>Flutter</strong> apps. I build bank POS apps for Stanbic IBTC, SwiftPay and Hope PSB, plus fintech, logistics and gov-tech apps on Google Play and the App Store.</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="#work">See my work <svg class="ic"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn-ghost" href="#contact"><svg class="ic"><use href="#i-mail"/></svg>Get in touch</a>
+        </div>
+        <div class="meta">
+          <span><svg class="ic"><use href="#i-pin"/></svg>Lagos, Nigeria · UTC+1</span>
+          <span><svg class="ic"><use href="#i-briefcase"/></svg>Android Developer at TM30 Global</span>
+          <span><svg class="ic"><use href="#i-plane"/></svg>Open to visa sponsorship</span>
+        </div>
+      </div>
+      <div class="portrait">
+        <div class="frame"><img src="assets/peace-hero.jpg" alt="Peace Olaleye smiling in a green polo" width="960" height="1200"></div>
+        <div class="chip-float cf-1"><span class="ic-tile"><svg class="ic"><use href="#i-pos"/></svg></span><div>NIBSS integration<small>SwiftPay POS · live</small></div></div>
+        <div class="chip-float cf-2"><span class="ic-tile"><svg class="ic"><use href="#i-android"/></svg></span><div>Kotlin · Java<small>Native Android</small></div></div>
+        <div class="chip-float cf-3"><span class="ic-tile"><svg class="ic"><use href="#i-phone"/></svg></span><div>Flutter<small>iOS + Android</small></div></div>
+      </div>
+    </div>
+
+    <div class="logos reveal">
+      <span class="lbl">Built for</span>
+      <div class="logo-row">
+        <span class="logo-pill"><img class="sq" src="assets/stanbic-logo.png" alt="">Stanbic IBTC</span>
+        <span class="logo-pill"><img src="assets/swiftpay-wordmark.png" alt="SwiftPay"></span>
+        <span class="logo-pill"><img class="sq" src="assets/hope-icon.png" alt="">Hope PSB</span>
+        <span class="logo-pill"><img src="assets/accessgov-wordmark.png" alt="AccessGov" style="height:20px"></span>
+        <span class="logo-pill"><img src="assets/payarena-logo.png" alt="Payarena" style="height:22px"></span>
+        <span class="logo-pill"><img class="sq" src="assets/ellington-logo.png" alt="">Ellington MFB</span>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat reveal"><b>3+</b><span>Years in production mobile</span></div>
+      <div class="stat reveal"><b>3</b><span>Bank POS apps built</span></div>
+      <div class="stat reveal"><b>₦500M+</b><span>Processed through apps I built</span></div>
+      <div class="stat reveal"><b>10k+</b><span>Users on a single app (Adashi)</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="block" id="about">
+  <div class="wrap">
+    <div class="sec-head reveal"><div><div class="eyebrow">01 — About</div><h2>Payment-grade mobile engineering.</h2></div></div>
+    <div class="bento">
+      <div class="card span-2 about-photo reveal"><img src="assets/peace-about.jpg" alt="Peace Olaleye standing with arms crossed in front of a brick wall" loading="lazy"><div class="cap"><b>Peace Enoch Olaleye</b>Mobile Software Engineer · Lagos</div></div>
+      <div class="card span-4 about-text reveal">
+        <p>I'm <strong>Peace Enoch Olaleye</strong>, a mobile engineer at <strong>TM30 Global</strong> in Lagos. I build <strong>native Android POS apps for agency banking</strong> for Stanbic IBTC, SwiftPay and Hope PSB. The work goes down to the level of ISO 8583 messages, EMV card processing and NIBSS integration.</p>
+        <p>I also own <strong>Flutter apps for fintech, payments and gov-tech</strong> from start to finish: API contract review, architecture, release, crash triage and iteration. These apps serve <strong>5,000+ active users</strong>.</p>
+        <p>I care about clean architecture, dependable REST integration and apps that keep working when the network doesn't.</p>
+      </div>
+      <div class="card span-2 reveal">
+        <span class="ic-tile"><svg class="ic ic-lg"><use href="#i-target"/></svg></span>
+        <h3>What I'm looking for</h3>
+        <p>Android or Flutter roles on product teams. Open to relocation with visa sponsorship (EU / UK / US) or remote from UTC+1.</p>
+      </div>
+      <div class="card span-2 reveal"><span class="ic-tile"><svg class="ic ic-lg"><use href="#i-shield"/></svg></span><h3>Reliable by design</h3><p>Typed models, token refresh, retries and error mapping, so failures are handled, not hidden.</p></div>
+      <div class="card span-3 reveal"><span class="ic-tile"><svg class="ic ic-lg"><use href="#i-wifi-off"/></svg></span><h3>Offline-first</h3><p>Local storage and auto-sync for field apps that work on weak networks and low-end devices.</p></div>
+      <div class="card span-3 reveal"><span class="ic-tile"><svg class="ic ic-lg"><use href="#i-bug"/></svg></span><h3>Ship, measure, fix</h3><p>Crashlytics-driven triage every release, with staged rollouts and fast CI/CD.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WORK ============ -->
+<section class="block" id="work">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="eyebrow">02 — Selected work</div><h2>Products I've shipped.</h2></div>
+      <p>Production apps for banks, payment companies and local government, used by real people with real money.</p>
+    </div>
+
+    <!-- POS -->
+    <div class="sub-head reveal"><span class="ic-tile"><svg class="ic"><use href="#i-pos"/></svg></span><h3>Agency-banking POS apps · Native Android</h3><span class="line"></span></div>
+    <div class="pos-grid">
+      <article class="card pos-card reveal">
+        <div class="pos-stage st-stanbic">
+          <span class="badge wip"><i></i>In progress · nearly done</span>
+          <div class="pos"><div class="paper"></div>
+            <div class="screen"><img src="assets/stanbic-wordmark.png" alt="Stanbic IBTC"><span class="amt">₦ 25,000.00</span><span class="ok">● Insert / tap card</span></div>
+            <div class="keys"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span class="r"></span><span class="y"></span><span class="g"></span></div>
+          </div>
+        </div>
+        <div class="pos-body">
+          <div><div class="tag">Stanbic IBTC</div><h3>Stanbic IBTC Agency POS</h3></div>
+          <ul class="ticks">
+            <li><svg class="ic"><use href="#i-check"/></svg><span>Agency-banking POS app for Stanbic IBTC agents, built in <b>Kotlin/Java</b>.</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><span>Runs on <b>multiple terminal models</b> (Horizon, MoreFun) from one codebase.</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><span><b>EMV</b> card-present and QR payments with <b>ISO 8583</b> host messaging.</span></li>
+          </ul>
+          <div class="chips"><span class="chip">Kotlin</span><span class="chip">Java</span><span class="chip">EMV</span><span class="chip">ISO 8583</span></div>
+        </div>
+      </article>
+
+      <article class="card pos-card reveal">
+        <div class="pos-stage st-swift">
+          <span class="badge"><i></i>Live · NIBSS integrated</span>
+          <div class="pos"><div class="paper"></div>
+            <div class="screen"><img src="assets/swiftpay-wordmark.png" alt="SwiftPay"><span class="amt">₦ 12,500.00</span><span class="ok">✓ Approved · 00</span></div>
+            <div class="keys"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span class="r"></span><span class="y"></span><span class="g"></span></div>
+          </div>
+        </div>
+        <div class="pos-body">
+          <div><div class="tag">SwiftPay</div><h3>SwiftPay Agency POS</h3></div>
+          <ul class="ticks">
+            <li><svg class="ic"><use href="#i-check"/></svg><span>Completed the <b>NIBSS integration</b> that routes card transactions through Nigeria's interbank switch.</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><span>Builds, packs and parses <b>ISO 8583</b> messages, and handles host responses.</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><span>Ships as <b>two app variants</b> for small and large terminals.</span></li>
+          </ul>
+          <div class="chips"><span class="chip">Kotlin</span><span class="chip">NIBSS</span><span class="chip">ISO 8583</span><span class="chip">EMV</span></div>
+        </div>
+      </article>
+
+      <article class="card pos-card reveal">
+        <div class="pos-stage st-hope">
+          <span class="badge"><i></i>v1.4 in the field</span>
+          <div class="pos"><div class="paper"></div>
+            <div class="screen"><img src="assets/hope-icon.png" alt="Hope PSB" style="max-height:44px;border-radius:50%"><span class="amt">Cash withdrawal</span><span class="ok">✓ Receipt printed</span></div>
+            <div class="keys"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span class="r"></span><span class="y"></span><span class="g"></span></div>
+          </div>
+        </div>
+        <div class="pos-body">
+          <div><div class="tag">Hope PSB</div><h3>Hope PSB Agency Banking</h3></div>
+          <ul class="ticks">
+            <li><svg class="ic"><use href="#i-check"/></svg><span>A full agent-banking suite: <b>cash withdrawal, deposit, transfers</b> and a wallet.</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><span>Bill payments: <b>airtime, data, electricity, cable TV</b>, education, betting and collections.</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><span>Prints receipts from the terminal's <b>built-in printer</b>.</span></li>
+          </ul>
+          <div class="chips"><span class="chip">Kotlin</span><span class="chip">Java</span><span class="chip">POS SDK</span><span class="chip">Bills API</span></div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Featured -->
+    <div class="sub-head reveal"><span class="ic-tile"><svg class="ic"><use href="#i-phone"/></svg></span><h3>Featured apps · Flutter</h3><span class="line"></span></div>
+
+    <article class="card feature reveal">
+      <div class="f-body">
+        <div class="f-head"><img src="assets/accessgov-icon.png" alt="AccessGov app icon"><div><div class="tag">Gov-tech · Revenue collection</div><h3>AccessGov</h3></div></div>
+        <p>The official app for Local Government revenue officers on the AccessGov platform. Officers use it to register citizens and businesses, check what they owe, and collect payments in the field, even with no internet connection.</p>
+        <ul class="ticks">
+          <li><svg class="ic"><use href="#i-check"/></svg><span><b>Offline-first:</b> officers can register people and take payments with no signal. Everything <b>syncs automatically</b> when the connection comes back.</span></li>
+          <li><svg class="ic"><use href="#i-check"/></svg><span>Payments by <b>cash, POS or online gateway</b>, with digital receipts and SMS confirmation.</span></li>
+          <li><svg class="ic"><use href="#i-check"/></svg><span>Built for <b>low-end Android devices</b>, with role-based secure login and biometrics.</span></li>
+          <li><svg class="ic"><use href="#i-check"/></svg><span>Clean architecture (data / domain / presentation) with dependency injection.</span></li>
+        </ul>
+        <div class="chips"><span class="chip">Flutter</span><span class="chip">Provider</span><span class="chip">get_it</span><span class="chip">Secure storage</span><span class="chip">Offline sync</span></div>
+        <div class="f-actions">
+          <a class="store" href="https://play.google.com/store/apps/details?id=com.accessgov.app" target="_blank" rel="noopener"><svg class="ic"><use href="#i-play"/></svg><span><small>Get it on</small><b>Google Play</b></span></a>
+        </div>
+      </div>
+      <div class="f-media m-ag">
+        <div class="shots">
+          <img src="assets/ag-3.png" alt="AccessGov screen" loading="lazy">
+          <img src="assets/ag-1.png" alt="AccessGov dashboard: register a business, apply for certificate" loading="lazy">
+          <img src="assets/ag-2.png" alt="AccessGov business detail with outstanding bills" loading="lazy">
+        </div>
+      </div>
+    </article>
+
+    <article class="card feature rev reveal">
+      <div class="f-body">
+        <div class="f-head"><img src="assets/payarena-logo.png" alt="Payarena logo" style="padding:6px"><div><div class="tag">Fintech · Payments &amp; commerce</div><h3>Payarena</h3></div></div>
+        <p>Unified Payments' all-in-one app: a wallet, bill payments (VAS) and the Payarena Mall marketplace, behind one secure account.</p>
+        <ul class="ticks">
+          <li><svg class="ic"><use href="#i-check"/></svg><span><b>Wallet</b>: add money, transfers, transaction history and shareable receipts.</span></li>
+          <li><svg class="ic"><use href="#i-check"/></svg><span><b>VAS quick actions</b> for airtime, data, electricity and other bills, plus <b>scan-to-pay QR</b>.</span></li>
+          <li><svg class="ic"><use href="#i-check"/></svg><span><b>Payarena Mall</b> checkout paid from the wallet, confirmed with a 6-digit PIN and a lockout after repeated wrong attempts.</span></li>
+          <li><svg class="ic"><use href="#i-check"/></svg><span>Step-by-step onboarding with <b>email, BVN / NIN verification</b>, biometric login, <b>light and dark themes</b> and one-tap app sharing.</span></li>
+        </ul>
+        <div class="chips"><span class="chip">Flutter</span><span class="chip">Dio</span><span class="chip">Provider</span><span class="chip">QR</span><span class="chip">Biometrics</span><span class="chip">Encryption</span></div>
+        <div class="f-actions">
+          <a class="store" href="https://play.google.com/store/apps/details?id=com.unifiedpayment.payarena" target="_blank" rel="noopener"><svg class="ic"><use href="#i-play"/></svg><span><small>Get it on</small><b>Google Play</b></span></a>
+          <a class="store" href="https://apps.apple.com/ng/app/payarena/id1637449009" target="_blank" rel="noopener"><svg class="ic"><use href="#i-apple"/></svg><span><small>Download on the</small><b>App Store</b></span></a>
+        </div>
+      </div>
+      <div class="f-media m-pa">
+        <div class="shots">
+          <img src="assets/pa-welcome.jpg" alt="Payarena welcome screen: One Account, Unlimited Possibilities" loading="lazy">
+          <img src="assets/pa-dash.jpg" alt="Payarena home dashboard in dark mode with wallet, VAS, Mall and quick actions" loading="lazy">
+          <img src="assets/pa-share.jpg" alt="Payarena share-app sheet with email, WhatsApp, X and Facebook" loading="lazy">
+        </div>
+      </div>
+    </article>
+
+    <article class="card feature reveal">
+      <div class="f-body">
+        <div class="f-head"><img src="assets/tatd-icon.jpg" alt="TATD Logistics app icon"><div><div class="tag">Logistics · Flutter</div><h3>TATD Logistics</h3></div></div>
+        <p>A logistics platform that connects verified drivers with delivery jobs. Customers send packages and track them live, and drivers pick up work, follow routes and get paid.</p>
+        <ul class="ticks">
+          <li><svg class="ic"><use href="#i-check"/></svg><span><b>Live tracking</b> on a map with the courier's route, status updates and ETA.</span></li>
+          <li><svg class="ic"><use href="#i-check"/></svg><span><b>Delivery options by vehicle</b> (motorcycle, sedan, SUV, van, truck) with upfront prices.</span></li>
+          <li><svg class="ic"><use href="#i-check"/></svg><span>Wallet and payment flows, push notifications, and views for drivers and admin dispatch.</span></li>
+          <li><svg class="ic"><use href="#i-check"/></svg><span>Latest release adds driver <b>operating cities</b> and a <b>quick switch</b> between customer and driver modes.</span></li>
+        </ul>
+        <div class="chips"><span class="chip">Flutter</span><span class="chip">Maps &amp; location</span><span class="chip">Push notifications</span><span class="chip">Payments</span></div>
+        <div class="f-actions">
+          <a class="store" href="https://play.google.com/store/apps/details?id=com.tatdlogistics.mobile" target="_blank" rel="noopener"><svg class="ic"><use href="#i-play"/></svg><span><small>Get it on</small><b>Google Play</b></span></a>
+          <a class="store" href="https://apps.apple.com/ng/app/tatd-logistics/id6754827296" target="_blank" rel="noopener"><svg class="ic"><use href="#i-apple"/></svg><span><small>Download on the</small><b>App Store</b></span></a>
+        </div>
+      </div>
+      <div class="f-media m-tatd">
+        <div class="shots">
+          <img src="assets/tatd-1.png" alt="TATD: send a package" loading="lazy">
+          <img src="assets/tatd-2.png" alt="TATD: live delivery tracking" loading="lazy">
+          <img src="assets/tatd-3.png" alt="TATD: delivery options by vehicle" loading="lazy">
+        </div>
+      </div>
+    </article>
+
+    <article class="card feature rev reveal">
+      <div class="f-body">
+        <div class="f-head"><span class="ic-tile" style="width:56px;height:56px;border-radius:14px;background:#e8f7ef;color:#0a8f4d;border:0"><svg class="ic ic-lg"><use href="#i-zap"/></svg></span><div><div class="tag">Utility payments · Flutter</div><h3>Paymeter NG</h3></div></div>
+        <p>A utility payments app for buying prepaid electricity tokens and paying bills, with card or bank-transfer checkout and real-time confirmation.</p>
+        <ul class="ticks">
+          <li><svg class="ic"><use href="#i-check"/></svg><span>Manage <b>several meters</b> and buy units in a few taps.</span></li>
+          <li><svg class="ic"><use href="#i-check"/></svg><span>A <b>spend overview</b> plus downloadable PDF receipts for every token.</span></li>
+          <li><svg class="ic"><use href="#i-check"/></svg><span>Card and bank-transfer checkout, with <b>instant confirmation</b>.</span></li>
+        </ul>
+        <div class="chips"><span class="chip">Flutter</span><span class="chip">Payments</span><span class="chip">Dio</span><span class="chip">PDF receipts</span></div>
+        <div class="f-actions">
+          <a class="store" href="https://play.google.com/store/apps/details?id=com.tm30Global.paymeter" target="_blank" rel="noopener"><svg class="ic"><use href="#i-play"/></svg><span><small>Get it on</small><b>Google Play</b></span></a>
+          <a class="store" href="https://apps.apple.com/ng/app/paymeter-ng/id6737909904" target="_blank" rel="noopener"><svg class="ic"><use href="#i-apple"/></svg><span><small>Download on the</small><b>App Store</b></span></a>
+        </div>
+      </div>
+      <div class="f-media m-pm"><img class="pm-img" src="assets/paymeter-mock.png" alt="Paymeter home screen with transaction overview" loading="lazy"></div>
+    </article>
+
+    <!-- Also shipped -->
+    <div class="sub-head reveal"><span class="ic-tile"><svg class="ic"><use href="#i-layers"/></svg></span><h3>Also shipped</h3><span class="line"></span></div>
+    <div class="also-grid">
+      <div class="card also-card reveal"><span class="lg"><img src="assets/ellington-logo.png" alt=""></span><h4>Ellington MFB Business</h4><p>MSME banking: KYC, loans, invoicing, bulk payments and agent tools.</p><span class="num">2,500+ businesses · ₦500M+ processed</span></div>
+      <div class="card also-card reveal"><span class="lg txt" style="background:linear-gradient(135deg,#10b981,#047857)">A</span><h4>Adashi</h4><p>Digital thrift (ajo) savings app.</p><span class="num">10,000+ users</span></div>
+      <div class="card also-card reveal"><span class="lg txt" style="background:linear-gradient(135deg,#6366f1,#312e81)">W</span><h4>Whitecrust Microfinance</h4><p>Microfinance banking app with transfers and account management.</p><span class="mini-links"><a href="https://play.google.com/store/apps/details?id=com.tm30.whitecrustng" target="_blank" rel="noopener"><svg class="ic ic-sm"><use href="#i-play"/></svg>Google Play</a><a href="https://apps.apple.com/ng/app/whitecrust/id6754378446" target="_blank" rel="noopener"><svg class="ic ic-sm"><use href="#i-apple"/></svg>App Store</a></span></div>
+      <div class="card also-card reveal"><span class="lg txt" style="background:linear-gradient(135deg,#f59e0b,#b45309)">D</span><h4>Digital Financial Freedom</h4><p>Personal finance product shipped to the app stores.</p><span class="num">Fintech</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SKILLS ============ -->
+<section class="block" id="skills">
+  <div class="wrap">
+    <div class="sec-head reveal"><div><div class="eyebrow">03 — Skills</div><h2>My toolkit.</h2></div><p>Native Android and Flutter, plus hands-on payments work that few mobile engineers have done.</p></div>
+    <div class="skills">
+      <div class="card skill-card reveal"><span class="ic-tile"><svg class="ic ic-lg"><use href="#i-android"/></svg></span><div><h3>Native Android</h3><p>Kotlin / Java apps built on the Android SDK.</p></div><div class="chips"><span class="chip">Kotlin</span><span class="chip">Java</span><span class="chip">Android SDK</span><span class="chip">Android Studio</span><span class="chip">Gradle</span><span class="chip">Material Design</span></div></div>
+      <div class="card skill-card reveal"><span class="ic-tile"><svg class="ic ic-lg"><use href="#i-pos"/></svg></span><div><h3>Payments &amp; POS</h3><p>Card-present transactions, end to end.</p></div><div class="chips"><span class="chip">ISO 8583</span><span class="chip">EMV</span><span class="chip">NIBSS</span><span class="chip">POS terminals</span><span class="chip">Agency banking</span><span class="chip">QR payments</span></div></div>
+      <div class="card skill-card reveal"><span class="ic-tile"><svg class="ic ic-lg"><use href="#i-phone"/></svg></span><div><h3>Flutter</h3><p>Cross-platform apps for iOS and Android.</p></div><div class="chips"><span class="chip">Dart</span><span class="chip">Flutter</span><span class="chip">Custom widgets</span><span class="chip">Theming</span><span class="chip">Animations</span><span class="chip">Responsive UI</span></div></div>
+      <div class="card skill-card reveal"><span class="ic-tile"><svg class="ic ic-lg"><use href="#i-layers"/></svg></span><div><h3>Architecture &amp; State</h3><p>Structure that scales with the team.</p></div><div class="chips"><span class="chip">Clean Architecture</span><span class="chip">MVVM</span><span class="chip">Dependency injection</span><span class="chip">Riverpod</span><span class="chip">BLoC</span><span class="chip">Provider</span></div></div>
+      <div class="card skill-card reveal"><span class="ic-tile"><svg class="ic ic-lg"><use href="#i-server"/></svg></span><div><h3>Data &amp; Integration</h3><p>Dependable networking and offline support.</p></div><div class="chips"><span class="chip">REST APIs</span><span class="chip">Retrofit</span><span class="chip">OkHttp</span><span class="chip">Dio</span><span class="chip">SQLite</span><span class="chip">Secure storage</span><span class="chip">Offline-first sync</span></div></div>
+      <div class="card skill-card reveal"><span class="ic-tile"><svg class="ic ic-lg"><use href="#i-flame"/></svg></span><div><h3>Firebase &amp; Delivery</h3><p>From commit to the store, measured.</p></div><div class="chips"><span class="chip">Crashlytics</span><span class="chip">Firestore</span><span class="chip">Cloud Messaging</span><span class="chip">Remote Config</span><span class="chip">CI/CD</span><span class="chip">GitLab</span><span class="chip">Play Console</span><span class="chip">App Store Connect</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXPERIENCE ============ -->
+<section class="block" id="experience">
+  <div class="wrap">
+    <div class="sec-head reveal"><div><div class="eyebrow">04 — Experience</div><h2>Where I've made an impact.</h2></div><a class="btn btn-ghost btn-sm" href="Peace_Olaleye_CV.pdf" download><svg class="ic"><use href="#i-download"/></svg>Full CV (PDF)</a></div>
+    <div class="timeline">
+      <div class="card job reveal">
+        <div class="when">2024 — Present</div>
+        <div>
+          <div class="job-head"><h3>Android Developer</h3><span class="co">· TM30 Global Limited</span></div>
+          <div class="sub">Lagos · Agency banking for Stanbic IBTC, SwiftPay and Hope Bank</div>
+          <ul class="ticks">
+            <li><svg class="ic"><use href="#i-check"/></svg><span>Build native Android (Kotlin/Java) agency-banking POS apps for <b>Stanbic IBTC</b>, <b>SwiftPay</b> and <b>Hope Bank</b>.</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><span>Completed the <b>NIBSS integration</b> for the SwiftPay POS app, so card transactions now run through Nigeria's interbank switch.</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><span>Implement <b>ISO 8583</b> messaging between terminals and payment hosts: building, packing and parsing messages, and handling host responses.</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><span>Integrate <b>EMV</b> card processing alongside card and QR payment flows across multiple POS app variants.</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><span>Developing the Stanbic IBTC agency-banking POS app, now in the final stages before launch.</span></li>
+          </ul>
+          <div class="chips"><span class="chip">Kotlin</span><span class="chip">Java</span><span class="chip">ISO 8583</span><span class="chip">EMV</span><span class="chip">NIBSS</span></div>
+        </div>
+      </div>
+      <div class="card job reveal">
+        <div class="when">Jan 2024 — Present</div>
+        <div>
+          <div class="job-head"><h3>Flutter Developer (Mobile Engineer)</h3><span class="co">· TM30 Global Limited</span></div>
+          <div class="sub">Lagos · Fintech, payments and logistics products</div>
+          <ul class="ticks">
+            <li><svg class="ic"><use href="#i-check"/></svg><span>Own production iOS and Android apps end to end, from architecture to post-launch crash triage, serving <b>5,000+ active users</b>.</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><span>Built a shared library of <b>50+ reusable widgets</b>, themes and design tokens, cutting the time to build a new screen <b>from days to hours</b>.</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><span>Hardened REST integration with Dio (typed models, token refresh, retries), cutting request failures by <b>~35%</b> and ending silent auth logouts.</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><span>Triaged Crashlytics crash clusters each release, lowering crash rates by <b>~35%</b>. Testing layouts on 15+ device sizes cut UI-related support tickets by <b>~20%</b>.</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><span>Automated builds with CI/CD and Firebase App Distribution, cutting QA turnaround <b>from a day to under an hour</b>. Releases go out with staged rollouts and hold <b>4.5+ star</b> ratings.</span></li>
+          </ul>
+          <div class="chips"><span class="chip">Flutter</span><span class="chip">Riverpod</span><span class="chip">BLoC</span><span class="chip">Firebase</span><span class="chip">CI/CD</span></div>
+        </div>
+      </div>
+      <div class="card job reveal">
+        <div class="when">Nov 2023 — Oct 2024</div>
+        <div><div class="job-head"><h3>National Youth Service Corps</h3><span class="co">· TM30 Global Limited</span></div>
+          <ul class="ticks"><li><svg class="ic"><use href="#i-check"/></svg><span>Served as an Android Developer, building native Kotlin/Java features.</span></li></ul></div>
+      </div>
+      <div class="card job reveal">
+        <div class="when">Graduated May 2023</div>
+        <div><div class="job-head"><h3>B.Tech (Hons), Computer Science</h3><span class="co">· Ladoke Akintola University of Technology</span></div><div class="sub">Ogbomoso, Nigeria</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="block" id="contact">
+  <div class="wrap">
+    <div class="contact reveal">
+      <div>
+        <div class="eyebrow">05 — Contact</div>
+        <h2>Let's build something people rely on.</h2>
+        <p>I'm open to Android and Flutter roles, with relocation and visa sponsorship (EU / UK / US) or remote from UTC+1. Email is the fastest way to reach me.</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="mailto:olaleyepc@gmail.com"><svg class="ic"><use href="#i-mail"/></svg>olaleyepc@gmail.com</a>
+          <a class="btn btn-ghost" href="Peace_Olaleye_CV.pdf" download><svg class="ic"><use href="#i-download"/></svg>Download CV</a>
+        </div>
+        <div class="socials">
+          <a href="https://github.com/Shalllom" target="_blank" rel="noopener" aria-label="GitHub"><svg class="ic"><use href="#i-github"/></svg></a>
+          <a href="https://www.linkedin.com/in/peace-olaleye-465975139" target="_blank" rel="noopener" aria-label="LinkedIn"><svg class="ic"><use href="#i-linkedin"/></svg></a>
+          <a href="mailto:olaleyepc@gmail.com" aria-label="Email"><svg class="ic"><use href="#i-mail"/></svg></a>
+        </div>
+      </div>
+      <div class="contact-photo"><img src="assets/peace-avatar.jpg" alt="" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© <span id="yr">2026</span> Peace Enoch Olaleye · Lagos, Nigeria</span>
+    <a href="#top">Back to top ↑</a>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var root = document.documentElement, btn = document.getElementById('theme');
+    function current() { var t = root.getAttribute('data-theme'); if (t) return t; return matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }
+    function paint() { btn.innerHTML = '<svg class="ic"><use href="#i-' + (current() === 'dark' ? 'sun' : 'moon') + '"/></svg>'; }
+    try { var saved = localStorage.getItem('theme'); if (saved) root.setAttribute('data-theme', saved); } catch (e) {}
+    paint();
+    btn.addEventListener('click', function () { var next = current() === 'dark' ? 'light' : 'dark'; root.setAttribute('data-theme', next); try { localStorage.setItem('theme', next); } catch (e) {} paint(); });
+  })();
+  (function () {
+    var m = document.getElementById('menu'), l = document.getElementById('links');
+    m.addEventListener('click', function () { var open = l.classList.toggle('open'); m.setAttribute('aria-expanded', open); });
+    l.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { l.classList.remove('open'); m.setAttribute('aria-expanded', false); }); });
+  })();
+  (function () {
+    var els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
+    var io = new IntersectionObserver(function (entries) { entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } }); }, { threshold: 0.1 });
+    els.forEach(function (e) { io.observe(e); });
+  })();
+  document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
