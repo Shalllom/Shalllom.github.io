@@ -31,6 +31,8 @@
     --shadow: 0 1px 2px rgba(15,17,23,.04), 0 10px 30px rgba(15,17,23,.07);
     --shadow-lg: 0 30px 60px -20px rgba(15,17,23,.25);
     --radius: 20px; --max: 1160px;
+    --aur-1: rgba(91,91,247,.22); --aur-2: rgba(34,184,230,.18); --aur-3: rgba(168,85,247,.14);
+    --grid-line: rgba(15,17,23,.06); --grain-op: .05;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
@@ -38,6 +40,8 @@
       --text: #eef0f5; --muted: #9aa0b0; --accent: #7c7cff; --accent-soft: #1c1e38;
       --accent-text: #a5a5ff; --ok: #4ade80; --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
       --shadow-lg: 0 30px 60px -20px rgba(0,0,0,.7);
+      --aur-1: rgba(124,124,255,.38); --aur-2: rgba(34,184,230,.24); --aur-3: rgba(168,85,247,.24);
+      --grid-line: rgba(255,255,255,.065); --grain-op: .08;
     }
   }
   :root[data-theme="dark"] {
@@ -45,6 +49,8 @@
     --text: #eef0f5; --muted: #9aa0b0; --accent: #7c7cff; --accent-soft: #1c1e38;
     --accent-text: #a5a5ff; --ok: #4ade80; --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
     --shadow-lg: 0 30px 60px -20px rgba(0,0,0,.7);
+    --aur-1: rgba(124,124,255,.38); --aur-2: rgba(34,184,230,.24); --aur-3: rgba(168,85,247,.24);
+    --grid-line: rgba(255,255,255,.065); --grain-op: .08;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -55,6 +61,31 @@
   .shots img, .portrait img, .about-photo img { image-rendering: -webkit-optimize-contrast; }
   .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
   @media (max-width: 600px) { .wrap { padding: 0 16px; } }
+
+
+  /* ===== Background: aurora + grid + grain (vector, crisp at 4K/5K) ===== */
+  .bg-fx { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+  .bg-fx .aurora { position: absolute; inset: -20%;
+    background:
+      radial-gradient(60vmax 26vmax at 42% -4%, var(--aur-1), transparent 66%),
+      radial-gradient(42vmax 32vmax at 10% 14%, var(--aur-1), transparent 62%),
+      radial-gradient(38vmax 28vmax at 90% 10%, var(--aur-2), transparent 62%),
+      radial-gradient(46vmax 34vmax at 74% 88%, var(--aur-3), transparent 64%),
+      radial-gradient(32vmax 26vmax at 18% 82%, var(--aur-2), transparent 62%);
+    animation: aurora-drift 48s ease-in-out infinite alternate; will-change: transform; }
+  @keyframes aurora-drift {
+    0%   { transform: translate3d(0, 0, 0) scale(1); }
+    50%  { transform: translate3d(2.5%, -2%, 0) scale(1.05); }
+    100% { transform: translate3d(-2%, 2%, 0) scale(1); }
+  }
+  .bg-fx .grid { position: absolute; inset: 0;
+    background-image: linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 56px 56px; background-position: center top;
+    -webkit-mask-image: radial-gradient(ellipse 85% 70% at 50% 0%, #000 10%, transparent 78%);
+            mask-image: radial-gradient(ellipse 85% 70% at 50% 0%, #000 10%, transparent 78%); }
+  .bg-fx .grain { position: absolute; inset: 0; opacity: var(--grain-op); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); background-size: 240px 240px; }
+  @media (min-width: 1700px) { .bg-fx .grid { background-size: 64px 64px; } }
+  @media (min-width: 2300px) { .bg-fx .grid { background-size: 72px 72px; } }
 
   /* Icons */
   .ic { width: 20px; height: 20px; flex: none; stroke: currentColor; fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
@@ -97,7 +128,7 @@
 
   /* Hero */
   .hero { padding: 72px 0 40px; position: relative; }
-  .hero::before { content: ""; position: absolute; inset: -140px 0 auto 0; height: 640px; z-index: -1; pointer-events: none;
+  .hero::before { display: none; content: ""; position: absolute; inset: -140px 0 auto 0; height: 640px; z-index: -1; pointer-events: none;
     background: radial-gradient(640px 320px at 15% 30%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 70%),
                 radial-gradient(520px 300px at 85% 20%, color-mix(in srgb, #22d3ee 14%, transparent), transparent 70%); }
   .status { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px 6px 10px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface); font-size: 13px; font-weight: 500; color: var(--muted); }
@@ -369,10 +400,11 @@
   @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } html { scroll-behavior: auto; } *, *::before { animation: none !important; } }
   :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 8px; }
   .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
-  @media print { header.nav, .hero::before, .icon-btn, .chip-float { display: none !important; } .reveal { opacity: 1 !important; transform: none !important; } }
+  @media print { .bg-fx, header.nav, .hero::before, .icon-btn, .chip-float { display: none !important; } .reveal { opacity: 1 !important; transform: none !important; } }
 </style>
 </head>
 <body>
+<div class="bg-fx" aria-hidden="true"><div class="aurora"></div><div class="grid"></div><div class="grain"></div></div>
 
 <!-- ============ ICON SET (24px grid, 1.75 stroke) ============ -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
