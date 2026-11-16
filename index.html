@@ -51,7 +51,8 @@
   html { scroll-behavior: smooth; scroll-padding-top: 80px; }
   body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
   a { color: inherit; text-decoration: none; }
-  img { max-width: 100%; display: block; }
+  img { max-width: 100%; display: block; image-rendering: auto; }
+  .shots img, .portrait img, .about-photo img { image-rendering: -webkit-optimize-contrast; }
   .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
   @media (max-width: 600px) { .wrap { padding: 0 16px; } }
 
@@ -323,6 +324,43 @@
   .contact-photo img { width: 100%; height: 100%; object-fit: cover; }
   @media (max-width: 860px) { .contact { grid-template-columns: 1fr; padding: 40px 22px; } .contact-photo { justify-self: start; width: 140px; height: 140px; order: -1; } .contact .btn { white-space: normal; height: auto; min-height: 46px; padding: 10px 16px; } }
 
+
+  /* ===== Large monitors (4K / 5K, ultrawide) ===== */
+  @media (min-width: 1700px) {
+    :root { --max: 1400px; }
+    body { font-size: 17px; }
+    h1 { font-size: 78px; }
+    h2 { font-size: 50px; }
+    .lead { font-size: 21px; max-width: 680px; }
+    .card p, .ticks li, .f-body > p { font-size: 16.5px; }
+    .portrait { max-width: 560px; justify-self: end; width: 100%; }
+    .f-media { min-height: 540px; }
+    .shots img { width: 215px; border-radius: 30px; }
+    .pos-stage { height: 330px; }
+    .pos { transform: rotate(-6deg) translateY(16px) scale(1.12); }
+    .pos-card:hover .pos { transform: rotate(0) translateY(6px) scale(1.12); }
+    .f-head h3 { font-size: 30px; }
+    .stat b { font-size: 38px; }
+  }
+  @media (min-width: 2300px) {
+    :root { --max: 1680px; }
+    body { font-size: 18.5px; }
+    h1 { font-size: 92px; }
+    h2 { font-size: 58px; }
+    .lead { font-size: 23px; max-width: 760px; }
+    .card p, .ticks li, .f-body > p { font-size: 18px; }
+    .chip { font-size: 14.5px; }
+    .portrait { max-width: 680px; }
+    .f-media { min-height: 620px; }
+    .shots img { width: 250px; border-radius: 34px; }
+    .pos-stage { height: 370px; }
+    .pos { transform: rotate(-6deg) translateY(16px) scale(1.28); }
+    .pos-card:hover .pos { transform: rotate(0) translateY(6px) scale(1.28); }
+    .f-head h3 { font-size: 34px; }
+    .stat b { font-size: 44px; }
+    .nav-in { height: 76px; }
+  }
+
   footer { padding: 32px 0 48px; color: var(--muted); font-size: 14px; }
   .foot { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; border-top: 1px solid var(--border); padding-top: 24px; }
 
@@ -372,7 +410,7 @@
 
 <header class="nav">
   <div class="wrap nav-in">
-    <a href="#top" class="brand" aria-label="Home"><img src="assets/peace-avatar.jpg" alt="">Peace Olaleye</a>
+    <a href="#top" class="brand" aria-label="Home"><img src="assets/peace-avatar-sm.jpg" alt="" width="160" height="160">Peace Olaleye</a>
     <nav class="links" id="links" aria-label="Primary">
       <a href="#about">About</a>
       <a href="#work">Work</a>
@@ -409,7 +447,7 @@
         </div>
       </div>
       <div class="portrait">
-        <div class="frame"><img src="assets/peace-hero.jpg" alt="Peace Olaleye smiling in a green polo" width="960" height="1200"></div>
+        <div class="frame"><img src="assets/peace-hero-sm.jpg" srcset="assets/peace-hero-sm.jpg 800w, assets/peace-hero.jpg 1600w" sizes="(max-width: 900px) 92vw, (min-width: 2300px) 680px, (min-width: 1700px) 560px, 440px" alt="Peace Olaleye smiling in a green polo" width="1600" height="2000" fetchpriority="high"></div>
         <div class="chip-float cf-1"><span class="ic-tile"><svg class="ic"><use href="#i-pos"/></svg></span><div>NIBSS integration<small>SwiftPay POS · live</small></div></div>
         <div class="chip-float cf-2"><span class="ic-tile"><svg class="ic"><use href="#i-android"/></svg></span><div>Kotlin · Java<small>Native Android</small></div></div>
         <div class="chip-float cf-3"><span class="ic-tile"><svg class="ic"><use href="#i-phone"/></svg></span><div>Flutter<small>iOS + Android</small></div></div>
@@ -549,9 +587,9 @@
       </div>
       <div class="f-media m-ag">
         <div class="shots">
-          <img src="assets/ag-3.png" alt="AccessGov screen" loading="lazy">
-          <img src="assets/ag-1.png" alt="AccessGov dashboard: register a business, apply for certificate" loading="lazy">
-          <img src="assets/ag-2.png" alt="AccessGov business detail with outstanding bills" loading="lazy">
+          <img src="assets/ag-3.jpg" alt="AccessGov screen" loading="lazy">
+          <img src="assets/ag-1.jpg" alt="AccessGov dashboard: register a business, apply for certificate" loading="lazy">
+          <img src="assets/ag-2.jpg" alt="AccessGov business detail with outstanding bills" loading="lazy">
         </div>
       </div>
     </article>
@@ -575,7 +613,7 @@
       <div class="f-media m-pa">
         <div class="shots">
           <img src="assets/pa-welcome.jpg" alt="Payarena welcome screen: One Account, Unlimited Possibilities" loading="lazy">
-          <img src="assets/pa-dash.jpg" alt="Payarena home dashboard in dark mode with wallet, VAS, Mall and quick actions" loading="lazy">
+          <img src="assets/pa-dash-sm.jpg" srcset="assets/pa-dash-sm.jpg 420w, assets/pa-dash.jpg 527w" sizes="(min-width: 2300px) 250px, (min-width: 1700px) 215px, (max-width: 420px) 108px, (max-width: 900px) 130px, 170px" alt="Payarena home dashboard in dark mode with wallet, VAS, Mall and quick actions" loading="lazy">
           <img src="assets/pa-share.jpg" alt="Payarena share-app sheet with email, WhatsApp, X and Facebook" loading="lazy">
         </div>
       </div>
@@ -599,9 +637,9 @@
       </div>
       <div class="f-media m-tatd">
         <div class="shots">
-          <img src="assets/tatd-1.png" alt="TATD: send a package" loading="lazy">
-          <img src="assets/tatd-2.png" alt="TATD: live delivery tracking" loading="lazy">
-          <img src="assets/tatd-3.png" alt="TATD: delivery options by vehicle" loading="lazy">
+          <img src="assets/tatd-1-sm.jpg" srcset="assets/tatd-1-sm.jpg 450w, assets/tatd-1.jpg 900w" sizes="(min-width: 2300px) 250px, (min-width: 1700px) 215px, (max-width: 420px) 108px, (max-width: 900px) 130px, 170px" alt="TATD: send a package" loading="lazy">
+          <img src="assets/tatd-2-sm.jpg" srcset="assets/tatd-2-sm.jpg 450w, assets/tatd-2.jpg 900w" sizes="(min-width: 2300px) 250px, (min-width: 1700px) 215px, (max-width: 420px) 108px, (max-width: 900px) 130px, 170px" alt="TATD: live delivery tracking" loading="lazy">
+          <img src="assets/tatd-3-sm.jpg" srcset="assets/tatd-3-sm.jpg 450w, assets/tatd-3.jpg 900w" sizes="(min-width: 2300px) 250px, (min-width: 1700px) 215px, (max-width: 420px) 108px, (max-width: 900px) 130px, 170px" alt="TATD: delivery options by vehicle" loading="lazy">
         </div>
       </div>
     </article>
@@ -623,9 +661,9 @@
       </div>
       <div class="f-media m-pm">
         <div class="shots">
-          <img src="assets/pm-1.jpg" alt="Paymeter welcome screen" loading="lazy">
-          <img src="assets/pm-6.jpg" alt="Paymeter transaction overview with units and spend" loading="lazy">
-          <img src="assets/pm-7.jpg" alt="Paymeter electricity token receipt" loading="lazy">
+          <img src="assets/pm-1-sm.jpg" srcset="assets/pm-1-sm.jpg 400w, assets/pm-1.jpg 750w" sizes="(min-width: 2300px) 250px, (min-width: 1700px) 215px, (max-width: 420px) 108px, (max-width: 900px) 130px, 170px" alt="Paymeter welcome screen" loading="lazy">
+          <img src="assets/pm-6-sm.jpg" srcset="assets/pm-6-sm.jpg 400w, assets/pm-6.jpg 750w" sizes="(min-width: 2300px) 250px, (min-width: 1700px) 215px, (max-width: 420px) 108px, (max-width: 900px) 130px, 170px" alt="Paymeter transaction overview with units and spend" loading="lazy">
+          <img src="assets/pm-7-sm.jpg" srcset="assets/pm-7-sm.jpg 400w, assets/pm-7.jpg 750w" sizes="(min-width: 2300px) 250px, (min-width: 1700px) 215px, (max-width: 420px) 108px, (max-width: 900px) 130px, 170px" alt="Paymeter electricity token receipt" loading="lazy">
         </div>
       </div>
     </article>
@@ -648,9 +686,9 @@
       </div>
       <div class="f-media m-wc">
         <div class="shots">
-          <img src="assets/wc-1.jpg" alt="Whitecrust splash screen" loading="lazy">
-          <img src="assets/wc-3.jpg" alt="Whitecrust account dashboard" loading="lazy">
-          <img src="assets/wc-4.jpg" alt="Whitecrust successful transfer receipt" loading="lazy">
+          <img src="assets/wc-1-sm.jpg" srcset="assets/wc-1-sm.jpg 400w, assets/wc-1.jpg 750w" sizes="(min-width: 2300px) 250px, (min-width: 1700px) 215px, (max-width: 420px) 108px, (max-width: 900px) 130px, 170px" alt="Whitecrust splash screen" loading="lazy">
+          <img src="assets/wc-3-sm.jpg" srcset="assets/wc-3-sm.jpg 400w, assets/wc-3.jpg 750w" sizes="(min-width: 2300px) 250px, (min-width: 1700px) 215px, (max-width: 420px) 108px, (max-width: 900px) 130px, 170px" alt="Whitecrust account dashboard" loading="lazy">
+          <img src="assets/wc-4-sm.jpg" srcset="assets/wc-4-sm.jpg 400w, assets/wc-4.jpg 750w" sizes="(min-width: 2300px) 250px, (min-width: 1700px) 215px, (max-width: 420px) 108px, (max-width: 900px) 130px, 170px" alt="Whitecrust successful transfer receipt" loading="lazy">
         </div>
       </div>
     </article>
